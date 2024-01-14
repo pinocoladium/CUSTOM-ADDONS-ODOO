@@ -16,7 +16,7 @@
         <field name="name">costs_income_view.tree</field>
         <field name="model">costs_income_model</field>
         <field name="arch" type="xml">
-            <tree string="Акты" editable="bottom">
+            <tree string="Сводки" editable="bottom">
                 <field name="date"/>
                 <field name="name"/>
                 <field name="currency_id"/>
@@ -96,32 +96,26 @@
     </record>
 
     <record id="product_action" model="ir.actions.act_window">
-        <field name="name">Добавить продукт</field>
+        <field name="name">Список зарегистрированных товаров</field>
         <field name="res_model">product_model</field>
         <field name="view_mode">tree,form</field>
     </record>
 
     <record id="stock_action" model="ir.actions.act_window">
-        <field name="name">Добавить склад</field>
+        <field name="name">Список складских помещений</field>
         <field name="res_model">stock_model</field>
         <field name="view_mode">tree,form</field>
     </record>
 
     <record id="act_action" model="ir.actions.act_window">
-        <field name="name">Добавить акт</field>
+        <field name="name">Список зарегистрированных актов</field>
         <field name="res_model">act_model</field>
         <field name="view_mode">tree,form</field>
     </record>
 
     <record id="product_lebeling_action" model="ir.actions.act_window">
-        <field name="name">Весь маркированный товар</field>
+        <field name="name">Весь промаркированный товар</field>
         <field name="res_model">product_lebeling_model</field>
-        <field name="view_mode">tree,form</field>
-    </record>
-
-    <record id="costs_income_action" model="ir.actions.act_window">
-        <field name="name">Сводка</field>
-        <field name="res_model">costs_income_model</field>
         <field name="view_mode">tree,form</field>
     </record>
 
@@ -131,7 +125,6 @@
       <menuitem id="operations_menu_action" name="Другое">
         <menuitem id="stock_menu_action" name="Склад" action="stock_action"/>
         <menuitem id="product_menu_action" name="Товар" action="product_action"/>
-        <menuitem id="costs_income_menu_action" name="Сводка" action="costs_income_action"/>
       </menuitem>
     </menuitem>
 
