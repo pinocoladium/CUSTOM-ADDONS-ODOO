@@ -1,0 +1,139 @@
+<odoo>
+  <data>
+
+    <record id="product_view" model="ir.ui.view">
+        <field name="name">product_view.tree</field>
+        <field name="model">product_model</field>
+        <field name="arch" type="xml">
+            <tree string="Товары">
+                <field name="name"/>
+                <field name="manufacturer"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="costs_income_view" model="ir.ui.view">
+        <field name="name">costs_income_view.tree</field>
+        <field name="model">costs_income_model</field>
+        <field name="arch" type="xml">
+            <tree string="Акты" editable="bottom">
+                <field name="date"/>
+                <field name="name"/>
+                <field name="currency_id"/>
+                <field name="value"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="stock_view" model="ir.ui.view">
+        <field name="name">stock_view.tree</field>
+        <field name="model">stock_model</field>
+        <field name="arch" type="xml">
+            <tree string="Склады">
+                <field name="name"/>
+                <field name="addresses"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="product_lebeling_view" model="ir.ui.view">
+        <field name="name">product_lebeling_view.tree</field>
+        <field name="model">product_lebeling_model</field>
+        <field name="arch" type="xml">
+            <tree string="Товары">
+                <field name="code"/>
+                <field name="state"/>
+                <field name="product"/>
+                <field name="stock"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="act_view_form" model="ir.ui.view">
+        <field name="name">act_view.form</field>
+        <field name="model">act_model</field>
+        <field name="arch" type="xml">
+            <form string="Акт">
+                <header>
+                    <button name="application_act" type="object" string="Применить акт"/>
+                </header>
+              <sheet>
+                  <group>
+                      <group>
+                          <field name="date"/>
+                          <field name="product" required="1"/>
+                          <field name="stock_first" invisible="state == 'Покупка'" required="state != 'Покупка'"/>
+                      </group>
+                      <group>
+                          <field name="application"/>
+                          <field name="count" required="1"/>
+                          <field name="stock_second" invisible="state == 'Продажа' or state == 'Списание'" required="state != 'Продажа' or state != 'Списание'"/>
+                          <field name="state" required="1"/>
+                      </group>
+                      <notebook>
+                          <page string="Сводка">
+                              <field name="costs_income"/>
+                          </page>
+                      </notebook>
+                  </group>
+              </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="act_view_tree" model="ir.ui.view">
+        <field name="name">act_view.tree</field>
+        <field name="model">act_model</field>
+        <field name="arch" type="xml">
+            <tree string="Акты">
+                <field name="application"/>
+                <field name="date"/>
+                <field name="state"/>
+                <field name="product"/>
+                <field name="count"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="product_action" model="ir.actions.act_window">
+        <field name="name">Добавить продукт</field>
+        <field name="res_model">product_model</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="stock_action" model="ir.actions.act_window">
+        <field name="name">Добавить склад</field>
+        <field name="res_model">stock_model</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="act_action" model="ir.actions.act_window">
+        <field name="name">Добавить акт</field>
+        <field name="res_model">act_model</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="product_lebeling_action" model="ir.actions.act_window">
+        <field name="name">Весь маркированный товар</field>
+        <field name="res_model">product_lebeling_model</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="costs_income_action" model="ir.actions.act_window">
+        <field name="name">Сводка</field>
+        <field name="res_model">costs_income_model</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="product_lebeling_menu_root" name="Маркировка">
+      <menuitem id="product_lebeling_menu_action" name="Проверка маркировки" action="product_lebeling_action"/>
+      <menuitem id="act_menu_action" name="Акты" action="act_action"/>
+      <menuitem id="operations_menu_action" name="Другое">
+        <menuitem id="stock_menu_action" name="Склад" action="stock_action"/>
+        <menuitem id="product_menu_action" name="Товар" action="product_action"/>
+        <menuitem id="costs_income_menu_action" name="Сводка" action="costs_income_action"/>
+      </menuitem>
+    </menuitem>
+
+  </data>
+</odoo>
