@@ -19,4 +19,3 @@
 #         return http.request.render('product_labeling.object', {
 #             'object': obj
 #         })
-
